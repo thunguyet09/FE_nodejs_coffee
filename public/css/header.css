@@ -1,0 +1,331 @@
+#header {
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 30px;
+    background-color: #fffdf3;
+    margin: 0 30px;
+}
+
+.subHeader {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.subHeader_info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.subHeader_info>div>span {
+    font-size: 14px;
+}
+
+.subHeader_info>div>i {
+    font-size: 16px;
+    color: #C7A17A;
+}
+
+.subHeader_info>div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.languages {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.languages>i {
+    font-size: 14px;
+}
+
+.subHeader_btns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: relative;
+    align-items: center;
+}
+
+.loginBtn,
+.signUpBtn {
+    padding: 8px 10px;
+    width: 110px;
+    height: 42px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: 0.2s ease-in-out;
+}
+
+.loginBtn {
+    background-color: #C7A17A;
+    color: white;
+}
+
+.signUpBtn {
+    background-color: #6F233F;
+    color: white;
+}
+
+.loginBtn:hover,
+.signUpBtn:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.mainHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.nav {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav>li {
+    list-style-type: none;
+}
+
+.nav>li>a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    color: black;
+    transition: 0.2s ease-in-out;
+}
+
+.nav > li > a:hover {
+    color:#C7A17A;
+}
+.shoppingCart {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    position: relative;
+}
+
+.shoppingCart>i {
+    font-size: 22px;
+    margin-top: 5px;
+    color: #505050;
+}
+
+#active {
+    color: #6F233F;
+    position: relative;
+}
+
+#active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 3px;
+    background-color: #6F233F;
+}
+
+.shoppingCart > a {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: black;
+}
+
+.shoppingCart > a > span {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.shoppingCart > a > p {
+    font-size: 14px;
+}
+.shoppingCart > a > span:hover {
+    color: #6F233F;
+}
+
+.subHeader_btns > img {
+    border-radius: 50%;
+}
+
+.avatarBox {
+    cursor: pointer;
+}
+
+.avatarBox > h4 {
+    margin: 0;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.role_down {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.role_down > span:first-child {
+    font-size: 13px;
+    color:#6a6a6a;
+}
+
+.role_down > span:last-child {
+    font-size: 17px;
+    color:#6a6a6a;
+}
+
+.subAvatar {
+    padding: 0;
+    position: absolute;
+    top: 160%;
+    left: 10px;
+    z-index: 99;
+    box-shadow: 0 0 20px rgba(89, 102, 122, 0.431);
+    font-family: 'Rubik', sans-serif;
+    padding: 0 20px;
+    width: 70%;
+    background-color: white;
+    border-radius: 5px;
+    font-family: 'Rubik', sans-serif;
+    visibility: hidden;
+    transition: .3s linear;
+    cursor: pointer;
+}
+
+.subAvatar > li > a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: .3s ease;
+    text-decoration: none;
+    color: black;
+}
+
+.subAvatar > li > a > p {
+    margin: 0;
+    width: 70%;
+}
+
+.subAvatar > li > a > span {
+    width: 30%;
+    text-align: left;
+    font-size: 24px;
+}
+
+.subAvatar > li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.subAvatar > li:first-child {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.subAvatar > li:last-child {
+    padding-top: 8px;
+    padding-bottom: 15px;
+}
+
+
+.subAvatar > li:hover > a {
+    color:#C7A17A;
+}
+
+.subHeader_btns:hover > .subAvatar {
+    top: 90%;
+    visibility: visible;
+}
+
+#cartBox {
+    padding: 0;
+    position: absolute;
+    top: 120%;
+    left: -330px;
+    background-color: #1d1d1d;
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+    width: 400px;
+    visibility: hidden;
+}
+
+#cartBox > li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+#cartBox > li > img {
+    width: 30%;
+}
+
+.itemBox {
+    width: 70%;
+}
+
+.itemBox > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Marcellus', serif;
+}
+
+.itemBox > div > span {
+    font-size: 22px;
+    transition: .3s ease;
+}
+
+.itemBox > div > span:hover, .itemBox > div > h4:hover {
+    color:#C7A17A;
+    cursor: pointer;
+}
+.itemBox > span, .itemBox > p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.itemBox > div > h4 {
+    margin: 0;
+    margin-bottom: 5px;
+    transition: .3s ease;
+}
+
+.itemBox > span {
+    font-size: 14px;
+}
+
+.itemBox > p {
+    font-size: 15px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.shoppingCart:hover > #cartBox{
+    top: 47%;
+    transition: .5s ease;
+    cursor: pointer;
+    visibility: visible;
+}
+
+.subHeader_info > div > span:first-child {
+    font-size: 20px;
+}
