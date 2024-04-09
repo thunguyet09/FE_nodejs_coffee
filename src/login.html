@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joye Cafe - Login</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Le&family=Roboto+Condensed&family=Rubik&family=Mulish:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Bebas+Neue&family=Caudex&family=Marcellus&family=Jost:wght@400;500&family=League+Spartan:wght@400;500&family=Catamaran:wght@300;400;500&family=Poppins:wght@400;500&family=Roboto:wght@400;500&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://kit.fontawesome.com/f88525de2e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="/public/css/register.css">
+</head>
+<body>
+    <div id="sign_up">
+        <div id="header"></div>
+
+        <div class="sign_up">
+            <form id="login_form">
+                <img width="550px" height="650px" src="/public/img/login.jpg">
+                <div class="form_row2">
+                    <img width="120px" src="/public/img/logo.png">
+                    <h1>Sign In</h1>
+                    <div class="group-control">
+                        <label>Email Address</label>
+                        <div>
+                            <input type="email" placeholder="Email Address" id="email" name="email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="group-control">
+                        <label>Password</label>
+                        <div>
+                            <input type="password" placeholder="Password" id="password" name="password">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="agree" class="form-check-input">
+                        <span>I agree to the <u>Terms</u> and <u>Privacy</u></span>
+                    </div>
+                    <button class="sign_up_btn">Login</button>
+                    <p>Don't have an account?<a href="/src/register.html"> Sign up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+    <div id="dialog-content">
+        <span></span>
+        <p class="dialog-text"></p>
+    </div>
+
+    <script src="/public/js/login.js"></script>
+    <script type="module" src="/public/js/header.js"></script>
+    <script type="module" src="/public/js/footer.js"></script>
+</body>
+</html>

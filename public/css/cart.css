@@ -1,0 +1,315 @@
+.cart {
+    margin-bottom: 70px;
+}
+
+.cart-heading {
+    position: relative;
+}
+
+.cart-heading-title {
+    width: 1000px;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 100px;
+}
+
+.cart-heading-title>.row1 {
+    position: relative;
+}
+
+.cart-heading-title>.row1>section {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+}
+
+.seperator {
+    width: 100px;
+    border-color: #2B231D;
+    border-top: 1px solid;
+    height: 1px;
+    position: relative;
+}
+
+.sep-diamond {
+    content: "";
+    height: 10px;
+    left: 50%;
+    margin: -5px auto auto -5px;
+    position: absolute;
+    transform: rotate(-45deg);
+    width: 10px;
+    background-color: #2B231D;
+}
+
+.cart-heading-title>.row2>h1 {
+    color: #2B231D;
+    font-family: "Playfair Display", Sans-serif;
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1.1em;
+}
+
+.cart-heading-title>.row2>p {
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    color: #2B231D;
+}
+
+.cart-heading-title>.row2>button {
+    width: 140px;
+    font-family: 'DM Sans', sans-serif;
+    padding: 15px 20px;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    background-color: #064469;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.cartBox {
+    margin: 30px;
+}
+
+.tableCart {
+    width: 75%;
+}
+
+.tableCart>h1 {
+    font-family: 'Marcellus', serif;
+    font-size: 26px;
+    letter-spacing: 1.2px;
+}
+
+.coupon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkout {
+    width: 25%;
+}
+
+.coupon>input {
+    width: 250px;
+    border: 1px solid rgb(217, 217, 217);
+    outline: none;
+    height: 35px;
+    padding: 5px 15px;
+    font-size: 16px;
+}
+
+.coupon>button {
+    width: 120px;
+    height: 47px;
+    background-color: #b8784e;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 550;
+    letter-spacing: 1.2px;
+    transition: .3s ease;
+}
+
+.coupon>button:hover {
+    color: black;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+th,
+td {
+    border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.prod-th {
+    padding-left: 100px;
+}
+
+th {
+    background-color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color:#262626;
+    padding: 15px 0px;
+    text-align: left;
+}
+
+.td2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0px 10px 50px;
+    font-family: 'Catamaran', sans-serif;
+}
+
+.td2 > h3 {
+    font-weight: 500;
+    color: #b8784e;
+    font-size: 19px;
+    cursor: pointer;
+}
+td {
+    padding: 10px 0px;
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.quantity > input {
+    border: none;
+    outline: none;
+    border: 1px solid rgb(229, 229, 229);
+    height: 40px;
+    width: 80px;
+    padding: 0 10px;
+    font-size: 15px;
+}
+
+.cartBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+}
+
+.checkout > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkout > h2 {
+    font-family: 'Marcellus', serif;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+.checkout {
+    padding: 20px 40px;
+    background-color: #ffe4dbc0;
+}
+
+.shipping > p {
+    text-align: right;
+}
+
+.discount {
+    color: #dc3545;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.checkout > div > h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: #424242;
+}
+
+.checkout > div > p {
+    font-family: 'Open Sans', sans-serif;
+    color: #515151;
+}
+
+.shipping > p > h4 {
+    font-weight: 500;
+    color: black;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.total > h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    color: #6F233F;
+}
+
+.removeBtn > i {
+    transition: .3s ease;
+}
+.removeBtn > i:hover {
+    color: #dc3545;
+    cursor: pointer;
+}
+
+.checkoutBtn {
+    background-color: #b8784e;
+    width: 100%;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1.3px;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    color: white;
+    font-weight: 550;
+    cursor: pointer;
+    transition: .3s ease;
+    margin-bottom: 10px;
+}
+
+.checkoutBtn:hover {
+    background-color: #6F233F;
+}
+
+.no-items-in-cart {
+    font-family: 'Mulish', sans-serif;
+    font-size: 17px;
+    background-color: #D0D7E1;
+    padding: 15px;
+    color: #73859F;
+}
+
+/* dialog */
+#dialog-content {
+    position: fixed;
+    z-index: 9999;
+    bottom: 20px;
+    right: 10px;
+    width: 320px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#dialog-content>p {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#dialog-content > span > span {
+    margin-top: 5px;
+    font-size: 23px;
+}

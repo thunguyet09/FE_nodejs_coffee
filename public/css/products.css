@@ -95,6 +95,7 @@
 #dataList {
     display: grid;
     grid-template-columns: auto auto auto;
+    transition: .2s linear;
 }
 
 .row2 {
@@ -114,7 +115,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 280px;
+    width: 290px;
     margin-bottom: 20px;
     padding: 10px;
     box-shadow: 0 0 4px rgb(193, 193, 193);
@@ -384,7 +385,7 @@
 
 #sort > input {
     padding: 5px 8px;
-    width: 220px;
+    width: 270px;
     font-family: "Mulish", sans-serif;
     font-size: 15px;
     border-radius: 5px;
@@ -411,8 +412,14 @@
     font-size: 15px;
     padding: 10px 5px 0px 5px;
     transition: .3s ease;
+    cursor: pointer;
 }
 
 #sort > div> a:hover {
     color: #74342B;
+}
+
+.arrowLeft:hover, .arrowRight:hover {
+    border: 1px solid black;
+    cursor: pointer;
 }

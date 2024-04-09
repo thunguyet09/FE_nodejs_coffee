@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joy Cafe - Shopping Cart</title>
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/cart.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Le&family=Roboto+Condensed&family=Rubik&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Bebas+Neue&family=Caudex&family=Marcellus&family=Jost:wght@400;500&family=League+Spartan:wght@400;500&family=Catamaran:wght@300;400;500&family=Poppins:wght@400;500&family=Roboto:wght@400;500&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://kit.fontawesome.com/f88525de2e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="cart">
+        <div id="header"></div>
+        <div class="cart">
+            <div class="cart-heading">
+                <img height="600px" width="100%" src="/public/img/cart5.png">
+                <div class="cart-heading-title">
+                    <div class="row1">
+                        <img width="350px" src="/public/img/cart2.png">
+                        <section>
+                            <img width="250px" src="/public/img/cart1.png">
+                        </section>
+                    </div>
+                    <div class="row2">
+                        <div class="seperator">
+                            <div class="sep-diamond"></div>
+                        </div>
+                        <h1>Relax & Enjoy your coffee</h1>
+                        <p>There are people who can’t start their day without having a freshly brewed cup of coffee and we understand them.</p>
+                        <button>ORDER NOW</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cartBox">
+                <div class="tableCart">
+                    <h1>CART</h1>
+                    <table id="table">
+                        <thead>
+                            <th></th>
+                            <th class="prod-th">Product</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </thead>
+                    </table>
+                    <div class="coupon">
+                        <input placeholder="Coupon code" id="coupon_code">
+                        <button id="apply-coupon">APPLY</button>
+                    </div>
+                </div>
+                <div class="checkout">
+                    <h2>CART TOTALS</h2>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+
+    <div id="dialog-content">
+        <span></span>
+        <p class="dialog-text"></p>
+    </div>
+
+    <script type="module" src="/public/js/footer.js"></script>
+    <script type="module" src="/public/js/header.js"></script>
+    <script type="module" src="/public/js/cart.js"></script>
+</body>
+</html>

@@ -23,3 +23,20 @@ navigation.forEach((item) => {
     item.removeAttribute('id')
 })
 navigation[1].setAttribute('id', 'active')
+
+const productBoxes = [];
+const productBoxElements = document.querySelectorAll('.productBox');
+
+productBoxElements.forEach((productBoxElement) => {
+    productBoxes.push(productBoxElement);
+
+    productBoxElement.addEventListener('mouseenter', (e) => {
+        console.log(productBoxes)
+        productBoxes.forEach((box) => {
+            if (box !== e.currentTarget) {
+                box.childNodes[1].style.display = 'none';
+            }
+        });
+        e.target.childNodes[1].style.display = 'flex';
+    });
+});

@@ -1,3 +1,6 @@
+import { getAPI } from "./api.js";
+
+const categories = await getAPI('categories')
 const footer = document.getElementById('footer')
 footer.innerHTML = `
 <div>
@@ -35,9 +38,7 @@ footer.innerHTML = `
     <img src="/public/img/logo.png" width="150">
     <div>
         <h3>Our Categories</h3>
-        <% for(let cat of categories) { %>
-            <p><%= cat.name %></p>
-        <% } %>
+        ${categories ? categories.map((item) => `<p>${item.name}</p>`).join(' ') : ''}
     </div>
     <div>
         <h3>Working Hours</h3>

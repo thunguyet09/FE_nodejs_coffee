@@ -20,11 +20,11 @@
         <div id="header"></div>
         <div class="detail">
             <div class="detail-navigation">
-                <a href="/">Home</a>
+                <a href="/src/home.html">Home</a>
                 <span class="material-symbols-outlined">
                     navigate_next
                 </span>
-                <!-- <a><%= product.name %></a> -->
+                <a class="nav-name"></a>
             </div>
 
             <div class="detail-container">
@@ -43,13 +43,14 @@
                 <div class="relative">
                     <div class="product-name">
                         <h1></h1>
-                        <form method="post" action="/products/details/like">
+                        <div>
+                            <span class="nums-of-favorite"></span>
                             <button class="like-btn">
                                 <span class="material-symbols-outlined">
                                     favorite
                                 </span>
                             </button>
-                        </form>
+                        </div>
                     </div>
                     <div class="luot_ban">
                         <span></span> 
@@ -62,11 +63,11 @@
                             <h4>SIZE</h4>
                         </div>
                         <div class="size-btns">
-                            <div class="size-box">
+                            <div class="size-box" id="sizeM">
                                 <input type="checkbox" name="size[]" value="M">
                                 <label>M</label>
                             </div>
-                            <div class="size-box">
+                            <div class="size-box" id="sizeL">
                                 <input type="checkbox" name="size[]" value="L">
                                 <label>L</label>
                             </div>
@@ -91,21 +92,31 @@
                             </button>
                         </div>
                     </div>
+                    <div class="detail-btns">
+                        <button class="addToCart">
+                            Thêm giỏ hàng
+                        </button>
+                        <button class="buyNow">
+                            Mua ngay
+                        </button>
+                    </div>
                 </div>
                 <div class="content-detail">
                     <div class="content-btns">
-                        <button>
+                        <button class="prev-detail">
                             <span class="material-symbols-outlined">
                                 chevron_left
                             </span>
                             <p>PREV</p>
+                            <div class="prev-product"></div>
                         </button>
                         <div class="arrows-product"></div>
-                        <button>
+                        <button class="next-detail">
                             <p>NEXT</p>
                             <span class="material-symbols-outlined">
                                 chevron_right
                             </span>
+                            <div class="next-product"></div>
                         </button>
                     </div>
                     <div class="content-box">
@@ -129,6 +140,11 @@
             </div>
         </div>
         <div id="footer"></div>
+    </div>
+
+    <div id="dialog-content">
+        <span></span>
+        <p class="dialog-text"></p>
     </div>
 
     <script type="module" src="/public/js/footer.js"></script>

@@ -1,5 +1,5 @@
 import { getAPI } from "./api.js";
-
+import { getLatestProducts } from "./api.js";
 const categoryBox = document.querySelector('.categoryBox')
 const categoryAPI = await getAPI('categories')
 categoryAPI.forEach((item) => {
@@ -28,46 +28,49 @@ categoryAPI.forEach((item) => {
 })
 
 const latestBox = document.querySelector('.latestProductBox')
-const latestProductAPI = await getAPI('/products/latest')
-latestProductAPI.forEach((item) => {
-    const latestItem = document.createElement('a')
-    latestItem.className = 'productBox'
-    latestItem.href = `/src/detail.html?id=${item._id}`
-    latestBox.appendChild(latestItem)
-    const img = document.createElement('img')
-    img.src = `/public/img/${item.img_url}`
-    img.width = 320
-    img.height = 300
-    latestItem.appendChild(img)
-    const productName = document.createElement('h2')
-    productName.textContent = item.name
-    latestItem.appendChild(productName)
-    const price = document.createElement('h3')
-    price.innerHTML = item.price.toLocaleString()
-    latestItem.appendChild(price)
-    const latestBtn = document.createElement('div')
-    latestBtn.className = 'divBtn'
-    latestItem.appendChild(latestBtn)
-    const addToCart = document.createElement('button')
-    addToCart.className = 'addToCart'
-    latestBtn.appendChild(addToCart)
-    addToCart.innerHTML = `
-        <p>Add to cart</p>
-        <span>${item.id}</span>
-        <span class="material-symbols-outlined">
-            trending_flat
-        </span>
-    `
-    const likeBtn = document.createElement('button')
-    likeBtn.className = 'likes'
-    likeBtn.innerHTML = `
-        <span>${item.likes}</span>
-        <span class="material-symbols-outlined">
-            favorite
-        </span>
-    `
-    latestBtn.appendChild(likeBtn)
-})
+const latestProductAPI = await getLatestProducts()
+
+if(latestProductAPI){
+    latestProductAPI.forEach((item) => {
+        const latestItem = document.createElement('a')
+        latestItem.className = 'productBox'
+        latestItem.href = `/src/detail.html?id=${item.id}`
+        latestBox.appendChild(latestItem)
+        const img = document.createElement('img')
+        img.src = `/public/img/${item.img_url}`
+        img.width = 320
+        img.height = 300
+        latestItem.appendChild(img)
+        const productName = document.createElement('h2')
+        productName.textContent = item.name
+        latestItem.appendChild(productName)
+        const price = document.createElement('h3')
+        price.innerHTML = item.price.toLocaleString()
+        latestItem.appendChild(price)
+        const latestBtn = document.createElement('div')
+        latestBtn.className = 'divBtn'
+        latestItem.appendChild(latestBtn)
+        const addToCart = document.createElement('button')
+        addToCart.className = 'addToCart'
+        latestBtn.appendChild(addToCart)
+        addToCart.innerHTML = `
+            <p>Add to cart</p>
+            <span>${item.id}</span>
+            <span class="material-symbols-outlined">
+                trending_flat
+            </span>
+        `
+        const likeBtn = document.createElement('button')
+        likeBtn.className = 'likes'
+        likeBtn.innerHTML = `
+            <span>${item.likes}</span>
+            <span class="material-symbols-outlined">
+                favorite
+            </span>
+        `
+        latestBtn.appendChild(likeBtn)
+    })
+}
 
 const promoBox = document.querySelector('.promoProductBox')
 const promoProductAPI = await getAPI('/products/promo')
@@ -75,7 +78,7 @@ const promoProductAPI = await getAPI('/products/promo')
 promoProductAPI.forEach((item) => {
     const promoItem = document.createElement('a')
     promoItem.className = 'promoItem'
-    promoItem.href = `/src/detail.html?id=${item._id}`
+    promoItem.href = `/src/detail.html?id=${item.id}`
     promoBox.appendChild(promoItem)
 
     const img = document.createElement('img')
