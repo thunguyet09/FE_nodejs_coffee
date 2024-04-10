@@ -15,7 +15,7 @@ async function getUserInfo() {
     const cart = await getCartByUserId(userId)
     order(user, cart)
 }
-
+const userElement = document.querySelector('.user_info')
 const userOrder = document.querySelector('.user-order')
 const productOrder = document.querySelector('.product-order')
 const productOrderRow1 = document.createElement('div')
@@ -23,6 +23,7 @@ productOrder.appendChild(productOrderRow1)
 const productOrderRow2 = document.createElement('div')
 productOrder.appendChild(productOrderRow2)
 const order = (user, carts) => {
+    userElement.innerHTML = ''
     const groupControl1 = document.createElement('div')
     groupControl1.className = 'groupControl'
     userOrder.appendChild(groupControl1)
@@ -94,7 +95,7 @@ const order = (user, carts) => {
     const productMain = document.createElement('div')
     productMain.className = 'productMain'
     productOrder.appendChild(productMain)
-    let totalQuantity = 0
+
     carts.forEach(async (item) => {
         const product = await getDetailProduct(item.prod_id)
         const productBox = document.createElement('div')
@@ -111,15 +112,21 @@ const order = (user, carts) => {
         const quantity = document.createElement('span')
         quantity.className = 'prodQuantity'
         quantity.textContent = item.quantity
-        totalQuantity += item.quantity
         productItem.appendChild(quantity)
         const prodName = document.createElement('p')
         prodName.textContent = product.name
         productItem.appendChild(prodName)
-        const price_box = document.createElement('h3')
-        const price = item.quantity * product.price
-        price_box.innerHTML = `${parseInt(price, 10).toLocaleString()}&#8363;`
-        productBox.appendChild(price_box)
+        if(item.size == 'M'){
+            const price_box = document.createElement('h3')
+            const price = item.quantity * product.price
+            price_box.innerHTML = `${parseInt(price, 10).toLocaleString()}&#8363;`
+            productBox.appendChild(price_box)
+        }else{
+            const price_box = document.createElement('h3')
+            const price = item.quantity * (product.price + 20000)
+            price_box.innerHTML = `${parseInt(price, 10).toLocaleString()}&#8363;`
+            productBox.appendChild(price_box)
+        }
     })
     const subtotalBox = document.createElement('div')
     subtotalBox.className = 'subtotalBox'
@@ -224,39 +231,55 @@ const order = (user, carts) => {
     const checkoutBtn = document.createElement('button')
     checkoutBtn.className = 'checkoutBtn'
     checkoutBtn.textContent = 'PLACE ORDER'
-    checkoutBtn.addEventListener('click', async(e) => {
-        e.preventDefault()
-        if(flag === false){
-            dialog_content.style.backgroundColor = '#dc3545'
-            dialog_icon.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`
-            dialogText.textContent = 'Vui lòng chọn phương thức thanh toán';
-            dialog_content.style.display = 'flex'
-            setTimeout(() => {
-                dialog_content.style.display = 'none'
-            }, 2000)
-        }else if(fullName.value == '' || address.value == '' || phone.value == '' || email.value == ''){
-            dialog_content.style.backgroundColor = '#dc3545'
-            dialog_icon.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`
-            dialogText.textContent = 'Chưa có thông tin giao hàng';
-            dialog_content.style.display = 'flex'
-            setTimeout(() => {
-                dialog_content.style.display = 'none'
-            }, 2000)
-        }else {
-            const user = {
-                full_name: fullName.value,
-                phone: phone.value,
-                address: address.value,
-            }
-            localStorage.setItem('info', JSON.stringify(user))
-            localStorage.removeItem('discount')
-            localStorage.removeItem('voucher')
-            newOrder(total_num, quantity, noteOrder.value, payment_method, fullName.value, address.value, phone.value)
-        }
-    })
     checkoutElement.appendChild(checkoutBtn)
+
+    let addressValue = ''
+    address.addEventListener('change', (e) => {
+        addressValue = e.target.value
+
+        checkoutBtn.addEventListener('click', async(e) => {
+            e.preventDefault()
+            if(flag === false){
+                dialog_content.style.backgroundColor = '#dc3545'
+                dialog_icon.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`
+                dialogText.textContent = 'Vui lòng chọn phương thức thanh toán';
+                dialog_content.style.display = 'flex'
+                setTimeout(() => {
+                    dialog_content.style.display = 'none'
+                }, 2000)
+            }else if(fullName.value == '' || address.value == '' || phone.value == '' || email.value == ''){
+                dialog_content.style.backgroundColor = '#dc3545'
+                dialog_icon.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`
+                dialogText.textContent = 'Chưa có thông tin giao hàng';
+                dialog_content.style.display = 'flex'
+                setTimeout(() => {
+                    dialog_content.style.display = 'none'
+                }, 2000)
+            }else {
+                const user = {
+                    full_name: fullName.value,
+                    phone: phone.value,
+                    address: addressValue,
+                }
+
+                const userName = document.createElement('li')
+                userName.innerHTML = `Họ và tên: ${user.full_name}`
+                userElement.appendChild(userName)
+                const userPhone = document.createElement('li')
+                userPhone.innerHTML = `Số điện thoại: ${user.phone}`
+                userElement.appendChild(userPhone)
+                const userAddress = document.createElement('li')
+                userAddress.innerHTML = `Địa chỉ: ${user.address}`
+                userElement.appendChild(userAddress)
+                localStorage.removeItem('discount')
+                localStorage.removeItem('voucher')
+                newOrder(total_num, quantity, noteOrder.value, payment_method, fullName.value, addressValue, phone.value)
+            }
+        })
+    })
 }
 
+const orders = await getOrders()
 const newOrder = async (total, quantity, noteOrder, paymentMethod, fullname, address, phone) => {
     const currentDate = new Date()
     const year = currentDate.getFullYear()
@@ -275,11 +298,10 @@ const newOrder = async (total, quantity, noteOrder, paymentMethod, fullname, add
         formatDate = day + "/" + month + "/" + year + " " + hour + ":" + minute
     }
     
-    const orders = await getOrders()
-    const id = orders[orders.length - 1].order_id
+    const id = orders[orders.length - 1].order_id + 1
     const order = {
         date: formatDate,
-        da_tra: total,
+        da_tra: paymentMethod == 'cod' ? 0 : '',
         discount: discount ? discount : 0,
         note: noteOrder,
         order_id: id,
@@ -301,7 +323,7 @@ const newOrder = async (total, quantity, noteOrder, paymentMethod, fullname, add
     })
     .then(() => {
         handleOrderDetail(id)
-        dialog_content.style.backgroundColor = '#C7A17A'
+        dialog_content.style.backgroundColor = '#6B8A47'
         dialog_icon.innerHTML = `<span class="material-symbols-outlined">done</span>`
         dialogText.textContent = 'Đặt hàng thành công';
         dialog_content.style.display = 'flex'
@@ -335,41 +357,46 @@ const product = async () => {
 }
 const handleOrderDetail = async(orderId) => {
     const cart = await getCartByUserId(userId)
-    cart.forEach(async (item) => {
-        const product = await getDetailProduct(item.prod_id)
-        const luotBan = parseInt(product.luot_ban) + parseInt(item.quantity)
-        const quantity = parseInt(product.quantity) - parseInt(item.quantity)
-        await fetch(`http://localhost:3000/api/products/${item.prod_id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({quantity: quantity, luot_ban: luotBan})
-        })
-        .then(async () => {
-            await getDetailProduct(item.prod_id)
-        })
-    })
+    for(let i = 0; i < cart.length; i++){
+        const product = await getDetailProduct(cart[i].prod_id)
+        if(cart[i].prod_id == product.id){
+            const luotBan = parseInt(product.luot_ban) + parseInt(cart[i].quantity)
+            const quantity = parseInt(product.quantity) - parseInt(cart[i].quantity)
+            await fetch(`http://localhost:3000/api/products/${cart[i].prod_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({quantity: quantity, luot_ban: luotBan})
+            })
+            .then(async () => {
+                await getDetailProduct(cart[i].prod_id)
+            })
+        }
+    }
     orderDetailDataFunc(orderId, cart)
 }
 
-
-
-const userElement = document.querySelector('.user_info')
 const confirmOrder = document.getElementById('myModal')
 const orderDetailDataFunc = async(orderId, cart) => {
     for(let i = 0; i < cart.length; i++){
         const product = await getDetailProduct(cart[i].prod_id)
         const order_detail = await getOrderDetail()
-        const order_detail_id = order_detail[order_detail.length - 1].order_detail_id
-        const subtotal = product.price * cart[i].quantity;
+        const order_detail_id = order_detail[order_detail.length - 1].order_detail_id + 1
+        let subtotal = 0;
+        if(cart[i].size == 'M'){
+            subtotal = product.price * cart[i].quantity
+        }else{
+            subtotal = (product.price + 20000) * cart[i].quantity
+        }
         const newOrderDetail = {
           order_detail_id: order_detail_id,
           order_id: orderId,
           prod_id: product.id,
           product_name: product.name,
-          product_price: product.price,
+          product_price: cart[i].size == 'M' ? product.price : (product.price + 20000),
           product_quantity: cart[i].quantity,
+          size: cart[i].size,
           subtotal: subtotal,
         };
         await fetch(`http://localhost:3000/api/orderdetail`,
@@ -387,26 +414,11 @@ const orderDetailDataFunc = async(orderId, cart) => {
             })
         })
         .then(() => {
-            userElement.innerHTML = ''
-            userInfo()
             confirmOrder.style.display = 'block'
         })
     }
 }
 
-const userInfo = async () => {
-    const user = localStorage.getItem('info')
-    console.log(user)
-    const userName = document.createElement('li')
-        userName.innerHTML = `Họ và tên: ${user.full_name}`
-        userElement.appendChild(userName)
-    const userPhone = document.createElement('li')
-        userPhone.innerHTML = `Số điện thoại: ${user.phone}`
-        userElement.appendChild(userPhone)
-    const userAddress = document.createElement('li')
-        userAddress.innerHTML = `Địa chỉ: ${user.address}`
-        userElement.appendChild(userAddress)
-}
 const cart = document.querySelector('.shoppingCart > a')
 cart.addEventListener('click', () => {
     window.location.href = '/src/cart.html'
@@ -414,12 +426,15 @@ cart.addEventListener('click', () => {
 
 const closeBtn = document.querySelector('.close')
 closeBtn.addEventListener('click', () => {
+    localStorage.removeItem('info')
    document.location.href = '/src/home.html'
 })
 
 const viewOrderBtn = document.querySelector('.view-order > button')
-viewOrderBtn.addEventListener('click', () => {
-    document.location.href = '/src/order.html'
+viewOrderBtn.addEventListener('click', async () => {
+    const id = orders[orders.length - 1].order_id + 1
+    localStorage.removeItem('info')
+    document.location.href = `/src/order_detail.html?id=${id}`
 })
 product()
 getUserInfo()

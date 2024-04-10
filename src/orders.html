@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joye Cafe - Your Orders</title>
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+    <link rel="stylesheet" href="/public/css/order.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Le&family=Roboto+Condensed&family=Rubik&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Bebas+Neue&family=Caudex&family=Marcellus&family=Jost:wght@400;500&family=League+Spartan:wght@400;500&family=Catamaran:wght@300;400;500&family=Poppins:wght@400;500&family=Roboto:wght@400;500&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://kit.fontawesome.com/f88525de2e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="order">
+        <div id="header"></div>
+        <div class="order-main">
+            <div class="order-list">
+                <div class="order-header">
+                    <h1>Orders</h1>
+                    <div class="order-header-row2">
+                        <div>
+                            <select id="status">
+                                <option>Trạng thái: Tất cả</option>
+                                <option value="0">Đang chờ xác nhận</option>
+                                <option value="1">Đã xác nhận</option>
+                                <option value="2">Đang giao hàng</option>
+                                <option value="3">Đã giao</option>
+                                <option value="4">Đã hủy</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select id="date">
+                                <option value="0">Hôm nay</option>
+                                <option value="1">Hôm qua</option>
+                                <option value="2">Tuần trước</option>
+                                <option value="3">Tháng trước</option>
+                                <option value="4">Năm trước</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select id="sort">
+                                <option>Sắp xếp: Tất cả</option>
+                                <option value="0">Mới nhất</option>
+                                <option value="1">Thứ tự theo tổng tiền: từ thấp đến cao</option>
+                                <option value="2">Thứ tự theo tổng tiền: từ cao xuống thấp</option>
+                            </select>
+                        </div>
+                        <div class="search">
+                            <input type="text" id="searchInput" placeholder="Search">
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <table id="order-table">
+                    <thead>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày tạo đơn</th>
+                        <th>Tổng số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Trạng thái</th>
+                        <th></th>
+                    </thead>
+                </table>
+            </div>
+            <div class="overview">
+                <h3>Tổng quan</h3>
+                <div class="spending">
+                    <h4></h4>
+                    <div class="total-orders">
+                        <span></span>
+                        <input id="orderRange" type="range" min="0" step="1">
+                    </div>
+                    <div class="expenditure">
+                        <span></span>
+                        <input id="totalRange" type="range" min="0" step="1">
+                    </div>
+                </div>
+                <div class="member-ranking">
+                    <div>
+                        <i class="fa-solid fa-medal"></i>
+                        <span>Khách hàng thân thiết</span>
+                    </div>
+                    <p class="membership"></p>
+                </div>
+                <div class="pending"></div>
+                <div class="confirmed"></div>
+                <div class="in-transit"></div>
+                <div class="delivered"></div>
+                <div class="cancelled"></div>
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+    
+    <script type="module" src="/public/js/footer.js"></script>
+    <script type="module" src="/public/js/header.js"></script>
+    <script type="module" src="/public/js/order.js"></script>
+</body>
+</html>

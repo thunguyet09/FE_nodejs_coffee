@@ -209,6 +209,7 @@
     text-align: center;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .total-pages > a:hover {

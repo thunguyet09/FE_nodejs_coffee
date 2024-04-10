@@ -5,6 +5,24 @@ const signUpBtn = document.querySelector('.sign_up_btn')
 const dialogContent = document.getElementById('dialog-content')
 const dialogIcon = document.querySelector('#dialog-content > span')
 const dialogText = document.querySelector('.dialog-text')
+
+const currentDate = new Date()
+const year = currentDate.getFullYear()
+const month = currentDate.getMonth() + 1
+const day = currentDate.getDate()
+const hour = currentDate.getHours()
+const minute = currentDate.getMinutes()
+let formatDate;
+if(minute < 10 && minute < 10){
+    formatDate = day + "/" + month + "/" + year + " " + "0"+ hour + ":" + "0" + minute
+}else if(hour < 10){
+    formatDate = day + "/" + month + "/" + year + " " + "0"+ hour + ":" + minute
+}else if(minute < 10){
+    formatDate = day + "/" + month + "/" + year + " " + hour + ":" + "0" + minute
+}else{
+    formatDate = day + "/" + month + "/" + year + " " + hour + ":" + minute
+}
+
 signUpBtn.addEventListener('click', (e) => {
     e.preventDefault()
     if (full_name.value == '' || email.value == '' || password.value == '') {
@@ -32,7 +50,8 @@ signUpBtn.addEventListener('click', (e) => {
                 full_name: full_name.value,
                 password: password.value,
                 role: 'Thành viên',
-                avatar: 'avatar.jpg'
+                avatar: 'avatar.jpg',
+                createdDate: formatDate
             })
         })
             .then((res) => {

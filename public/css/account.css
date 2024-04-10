@@ -1,0 +1,129 @@
+.account {
+    margin: 40px 30px;
+}
+
+.avatar > img {
+    border-radius: 50%;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.avatar > div > h5 {
+    margin: 0;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    margin-left: 8px;
+}
+
+.avatar > div {
+    margin-top: 5px;
+}
+
+.changeInfoBtn {
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Mulish', sans-serif;
+    background-color: white;
+    gap: 5px;
+    height: 30px;
+    color: rgb(96, 96, 96);
+    cursor: pointer;
+}
+
+.changeInfoBtn > span:first-child {
+    font-size: 18px;
+}
+
+.changeInfoBtn > span:last-child {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.listBox {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 55px;
+}
+
+.listBox > div > p, .sub-list > p {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 10px;
+}
+.listBox > div > i {
+    font-size: 19px;
+    color: rgb(199, 161, 122);
+}
+
+.listBox > div > p {
+    font-weight: 600;
+}
+
+.bills > i {
+    font-size: 20px;
+    color: rgb(199, 161, 122);
+}
+
+.sub-list > p {
+    font-size: 14px;
+    color: rgb(96, 96, 96);
+}
+
+.sub-list {
+    margin-left: 3px;
+}
+
+.bills {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.bills > p {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+}
+
+.account-list {
+    margin-left: 10px;
+    width: 15%;
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.accountBox {
+    background-color: rgb(255, 253, 243);
+    padding: 0px 30px 15px 30px;
+    width: 85%;
+}
+
+.account-title > h3, .account-title > p {
+    margin: 0;
+    font-family: 'Mulish', sans-serif;
+    margin: 5px 0px;
+}
+
+
+.account-title > p {
+    font-size: 14px;
+}
+
+.account-title {
+    border-bottom: .0625rem solid #efefef;
+    padding: 15px 0px;
+}

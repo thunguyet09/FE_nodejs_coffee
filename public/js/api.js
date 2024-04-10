@@ -104,3 +104,26 @@ export const getOrderDetail = async () => {
     return data
 }
 
+export const getOrdersByUserId = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/orders/${id}`)
+    const data = await response.json()
+    return data
+}
+
+export const getOrdersById = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/order/${id}`)
+    const data = await response.json()
+    return data
+}
+
+export const getOrderDetailByOrderId = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/orderdetail/${id}`)
+    const data = await response.json()
+    return data
+}
+
+export const getComments = async () => {
+    const response = await fetch(`http://localhost:3000/api/comments`)
+    const data = await response.json()
+    return data
+}

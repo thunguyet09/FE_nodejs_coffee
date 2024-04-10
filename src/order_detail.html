@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joye Cafe - Order Details</title>
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/order_detail.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Le&family=Roboto+Condensed&family=Rubik&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Bebas+Neue&family=Caudex&family=Marcellus&family=Jost:wght@400;500&family=League+Spartan:wght@400;500&family=Catamaran:wght@300;400;500&family=Poppins:wght@400;500&family=Roboto:wght@400;500&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://kit.fontawesome.com/f88525de2e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="orderDetail">
+        <div id="header"></div>
+        <div class="orderDetail">
+            <h2>Chi tiết đơn hàng</h2>
+            <div class="orderDetailElement">
+                <div class="orderDetailBox1">
+                    <div class="order-detail-col1">
+                        <div class="order-id"></div>
+                        <div class="order-status"></div>
+                    </div>
+                    <div class="order-detail-col2">
+                        <h3>Người nhận:</h3>
+                        <p class="customer-name"></p>
+                        <p class="phone"></p>
+                        <p class="address"></p>
+                    </div>
+                    <div class="order-detail-col3">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Tổng phụ</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="note"></div>
+                </div>
+                <div class="orderDetailBox2">
+                    <div class="payment">
+                        <h3>Phương thức thanh toán</h3>
+                        <div class="payment-method"></div>
+                    </div>
+                    <div class="bill">
+                        <div class="subtotalBox">
+                            <h4>Tạm tính</h4>
+                            <p class="subtotal"></p>
+                        </div>
+                        <div class="discount"></div>
+                        <div class="totalBox">
+                            <h4>Thành tiền</h4>
+                            <p class="total"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="totalAmount">
+                        <div class="total-quantity"></div>
+                        <h2 class="need-to-pay"></h2>
+                    </div>
+                    <div class="order-detail-btns">
+                        <button class="cancel">Hủy đơn hàng</button>
+                        <button class="skip">Quay lại</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+
+    <div id="dialog-content">
+        <span></span>
+        <p class="dialog-text"></p>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-product"></div>
+            <div class="modal-stars">
+                <span class="star"><i class="fa-solid fa-star" data-value="1"></i></span>
+                <span class="star"><i class="fa-solid fa-star" data-value="2"></i></span>
+                <span class="star"><i class="fa-solid fa-star" data-value="3"></i></span>
+                <span class="star"><i class="fa-solid fa-star" data-value="4"></i></span>
+                <span class="star"><i class="fa-solid fa-star" data-value="5"></i></span>
+            </div>
+            <div class="modal-text"></div>
+            <div class="send-review">
+                <button>Gửi đánh giá</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/public/js/footer.js"></script>
+    <script type="module" src="/public/js/header.js"></script>
+    <script type="module" src="/public/js/order_detail.js"></script>
+</body>
+</html>

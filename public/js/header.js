@@ -110,7 +110,7 @@ if(token){
     const ul = document.createElement('ul')
           ul.className = 'subAvatar'
           ul.innerHTML = `
-            <li><a>
+            <li><a href="/src/account.html">
                 <span class="material-symbols-outlined">
                     id_card
                 </span>
@@ -135,7 +135,7 @@ if(token){
                 window.location.href = '/src/home.html'
           })
           ul.childNodes[3].addEventListener('click', () => {
-            window.location.href = './order.html'
+            window.location.href = '/src/orders.html'
           })
     const languages = document.createElement('div')
         languages.className = 'languages'

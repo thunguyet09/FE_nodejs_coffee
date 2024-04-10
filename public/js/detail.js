@@ -1,7 +1,7 @@
 const url = new URL(document.location.href);
 const id = url.searchParams.get("id");
 
-import { getDetailProduct } from "./api.js";
+import { getComments, getDetailProduct } from "./api.js";
 import { getCart } from "./api.js";
 import { numsInCart } from "./header.js";
 import { cartExists } from "./api.js";
@@ -209,6 +209,20 @@ sizeBtns.forEach((item) => {
     })
 })
 const addToCart = document.querySelector('.addToCart')
+const buyNow = document.querySelector('.buyNow')
+const productBox = document.querySelector('.detail')
+if(data.quantity == 0){
+    addToCart.style.opacity = '0.5'
+    addToCart.disabled = true
+    buyNow.style.opacity = '0.5'
+    buyNow.disabled = true
+    const soldout = document.createElement('div')
+    productBox.appendChild(soldout)
+    soldout.className = 'sold-out'
+    const p = document.createElement('p')
+    p.textContent = 'Sản phẩm này đã hết hàng'
+    soldout.appendChild(p)
+}
 const carts = await getCart()
 const dialogContent = document.getElementById('dialog-content')
 const dialogIcon = document.querySelector('#dialog-content > span')
@@ -399,4 +413,155 @@ likesArr.forEach((item) => {
     }
 })
 
+const reviewBox = document.querySelector('.reviewBox')
+const handleDividedReview = async () => {
+    const reviews = await getComments()
+    const filterReview = reviews.filter((item) => item.prod_id == id)
+    console.log(filterReview)
+    const dividedReview = document.createElement('div')
+    dividedReview.className = 'dividedReview'
+    reviewBox.appendChild(dividedReview)
+    const averagePoint = document.createElement('div')
+    averagePoint.className = 'avgPoint'
+    dividedReview.appendChild(averagePoint)
+    const starArr = []
+    let totalStar = 0
+    filterReview.forEach((item) => {
+        starArr.push(item.stars)
+        totalStar += item.stars
+    })
+    const avgStars = totalStar/(starArr.length)
+    const avgPoint = document.createElement('h2')
+    if(avgStars){
+        avgPoint.textContent = avgStars.toFixed(1) + " / 5"
+    }
+    averagePoint.appendChild(avgPoint)
+
+    const averageStar = document.createElement('div')
+    if(avgStars == 5) {
+        averageStar.innerHTML = `
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        `
+    }
+    if(avgStars >= 4 && avgStars < 5) {
+        averageStar.innerHTML = `
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <div>
+                <i class="fa-regular fa-star"></i>
+                <span>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+            </div>
+        `
+    }
+    if(avgStars >= 3 && avgStars < 4){
+        averageStar.innerHTML = `
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <div>
+                <i class="fa-regular fa-star"></i>
+                <span>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+            </div>
+            <i class="fa-regular fa-star"></i>
+        `
+    }
+    averagePoint.appendChild(averageStar)
+    
+    if(avgStars >= 4 && avgStars < 5){
+        averageStar.childNodes[9].id = 'last'
+        console.log(averageStar.childNodes[9].childNodes[3])
+        const calc = Math.floor((avgStars * 100)/5) + 10
+        averageStar.childNodes[9].childNodes[3].style.width = calc + "%"
+    }
+
+    if(avgStars >= 3 && avgStars < 4){
+        averageStar.childNodes[7].id = 'last'
+        const calc = Math.floor((avgStars * 100)/5) - 6
+        averageStar.childNodes[7].childNodes[3].style.width = calc + "%"
+    }
+    
+    const allStar = document.createElement('button')
+    dividedReview.appendChild(allStar)
+    allStar.innerHTML = `
+        (${filterReview.length}) Tất cả
+    `
+    allStar.addEventListener('click', () => {
+        dividedReview.innerHTML = ''
+        reviewBox.innerHTML = ''
+        showReview(filterReview)
+        handleDividedReview()
+    })
+    const fiveStar = document.createElement('button')
+    const fiveStarLength = filterReview.filter((item) => parseInt(item.stars) === 5)
+    fiveStar.innerHTML = `
+        (${fiveStarLength.length}) 5 sao
+    `
+    dividedReview.appendChild(fiveStar)
+    fiveStar.addEventListener('click', () => {
+        dividedReview.innerHTML = ''
+        reviewBox.innerHTML = ''
+        showReview(fiveStarLength)
+        handleDividedReview()
+    })
+    const fourStar = document.createElement('button')
+    dividedReview.appendChild(fourStar)
+    const fourStarLength = filterReview.filter((item) => parseInt(item.stars) === 4)
+    fourStar.innerHTML = `
+        (${fourStarLength.length}) 4 sao
+    `
+    fourStar.addEventListener('click', () => {
+        dividedReview.innerHTML = ''
+        reviewBox.innerHTML = ''
+        showReview(fourStarLength)
+        handleDividedReview()
+    })
+    const threeStar = document.createElement('button')
+    dividedReview.appendChild(threeStar)
+    const threeStarLength = filterReview.filter((item) => parseInt(item.stars) === 3)
+    threeStar.innerHTML = `
+        (${threeStarLength.length}) 3 sao
+    `
+    threeStar.addEventListener('click', () => {
+        dividedReview.innerHTML = ''
+        reviewBox.innerHTML = ''
+        showReview(threeStarLength)
+        handleDividedReview()
+    })
+    const twoStar = document.createElement('button')
+    dividedReview.appendChild(twoStar)
+    const twoStarLength = filterReview.filter((item) => parseInt(item.stars) === 2)
+    twoStar.innerHTML = `
+        (${twoStarLength.length}) 2 sao
+    `
+    twoStar.addEventListener('click', () => {
+        dividedReview.innerHTML = ''
+        reviewBox.innerHTML = ''
+        showReview(twoStarLength)
+        handleDividedReview()
+    })
+    const oneStar = document.createElement('button')
+    dividedReview.appendChild(oneStar)
+    const oneStarLength = filterReview.filter((item) => parseInt(item.stars) === 1)
+    oneStar.innerHTML = `
+        (${oneStarLength.length}) 1 sao
+    `
+    oneStar.addEventListener('click', () => {
+        dividedReview.innerHTML = ''
+        reviewBox.innerHTML = ''
+        showReview(oneStarLength)
+        handleDividedReview()
+    })
+}
+
+handleDividedReview()
 updateLikes()

@@ -1,0 +1,479 @@
+.orderDetail {
+    margin: 30px 30px;
+}
+
+.orderDetailBox1 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.orderDetail>h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.orderDetailElement {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    overflow-x: hidden;
+}
+
+.order-detail-col1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(228, 228, 228, 0.471);
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 5px;
+    padding: 15px 20px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.order-id>h3,
+.order-id>p {
+    margin: 0;
+}
+
+.orderDetailBox1 {
+    width: 75%;
+}
+
+.orderDetailBox2 {
+    width: 25%;
+}
+
+.order-id>p {
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.order-id > h3 {
+    font-size: 18px;
+}
+.order-id>h3>b {
+    color: #6F233F;
+    font-size: 17px;
+    font-family: "Inter", sans-serif;
+}
+
+.order-id>p>span {
+    color: #5E616B;
+    font-weight: bold;
+}
+
+.order-status>h3 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.order-status {
+    background-color: rgb(34, 34, 221, 0.15);
+    color: #4959A5;
+    padding: 8px 20px;
+    border-radius: 10px;
+}
+
+.order-detail-col2 {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 5px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.order-detail-col2 > h3, .order-detail-col2 > p {
+    margin: 0;
+}
+
+.order-detail-col2 > h3 {
+    padding: 15px 20px;
+    background-color: rgba(228, 228, 228, 0.471);
+    color: #4C5660;
+    font-size: 17px;
+}
+
+.customer-name {
+    padding: 15px 20px 5px 20px;
+}
+
+.phone {
+    padding: 5px 20px;
+}
+
+.address {
+    padding: 5px 20px 15px 20px;
+}
+
+.customer-name > b {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Mulish', sans-serif;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table th {
+    padding: 15px 10px;
+    color: rgb(68, 68, 68);
+    font-size: 16px;
+}
+
+table td {
+    padding: 20px 12px;
+}
+
+.note > h3 {
+    color: #6B8A47;
+    font-family: 'Mulish', sans-serif;
+    text-decoration: underline;
+    font-size: 20px;
+    margin: 0;
+}
+
+.note > p {
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    margin-top: 8px;
+}
+
+.payment {
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 5px;
+}
+
+.payment > h3 {
+    font-family: 'Mulish', sans-serif;
+    background-color: rgba(228, 228, 228, 0.471);
+    margin: 0;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: #525558;
+}
+.payment-method > h3, .payment-method > p {
+    margin: 0;
+}
+
+.payment-method {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Mulish', sans-serif;
+}
+
+.payment-method > h3 {
+    text-transform: uppercase;
+    font-size: 17px;
+    color: #63647E;
+}
+
+.bill {
+    margin-top: 30px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 5px;
+    padding: 20px;
+}
+.discount, .subtotalBox, .shipping-fee, .totalBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+}
+
+.discount > p {
+    color: red;
+}
+.subtotal > h4, .subtotal > p, .shipping-fee > h4, .shipping-fee > p, .total > h4, .total > p {
+    margin: 0;
+}
+
+.subtotal > h4, .discount > h4 {
+    color: #63647E;
+}
+
+.total > h4, .total > p {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.total {
+    margin-top: 15px;
+}
+
+hr {
+    margin-top: 30px;
+    border: 0.5px solid rgb(224, 224, 224);
+}
+
+.totalAmount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Mulish', sans-serif;
+    margin-top: 20px;
+}
+.total-quantity > h3 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.need-to-pay {
+    margin: 0;
+    color: #C7A17A;
+}
+
+.order-detail-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Mulish', sans-serif;
+    margin-top: 20px;
+}
+
+.order-detail-btns > .cancel {
+    width: 170px;
+    padding: 12px 20px;
+    font-size: 17px;
+    background-color: #E4C6BD;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #B70328;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.order-detail-btns > .skip {
+    width: 120px;
+    padding: 12px 20px;
+    font-size: 17px;
+    background-color: #D9D9D9;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #64747B;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.order-detail-btns > .cancel:hover, .order-detail-btns > .skip:hover {
+    background-color: white;
+}
+
+/* dialog */
+#dialog-content {
+    position: fixed;
+    z-index: 9999;
+    bottom: 20px;
+    right: 10px;
+    width: 320px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+#dialog-content>p {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#dialog-content>span>span {
+    margin-top: 3px;
+    font-size: 22px;
+}
+
+.prodName {
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.prodName:hover {
+    color:#C7A17A;
+}
+
+.reviewBtn {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Mulish', sans-serif;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #E5C1CD;
+    padding: 10px 10px;
+    transition: .3s ease;
+}
+
+.reviewBtn > p {
+    margin: 0;
+}
+
+.reviewBtn:hover {
+    cursor: pointer;
+    color: #427D9D;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.541);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    font-family: 'Mulish', sans-serif;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-product {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.modal-product > img {
+    width: 30%;
+}
+
+.productElement > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.productElement > div > h3, .productElement > div > p{
+    margin: 0;
+}
+
+.productElement {
+    width: 70%;
+}
+
+.modal-stars {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.modal-stars > span > i {
+    font-size: 30px;
+    margin: 0px 3px;
+}
+
+.active {
+    color: #E9B824;
+}
+.modal-stars > span:hover {
+    cursor: pointer;
+}
+
+.modal-text {
+    padding: 0px 10px;
+    font-family: 'Mulish', sans-serif;
+    margin-top: 15px;
+}
+
+.modal-text > textarea {
+   padding: 5px 10px;
+   border: 1px solid rgb(190, 190, 190);
+   outline: none;
+   font-family: 'Mulish', sans-serif;
+}
+
+.modal-text > h3 {
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.send-review {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.send-review > button {
+    font-family: 'Mulish', sans-serif;
+    width: 140px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #C7A17A;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.send-review > button:hover {
+    color: black;
+}
