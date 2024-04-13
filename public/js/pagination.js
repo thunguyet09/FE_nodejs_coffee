@@ -15,13 +15,7 @@ searchBtn.addEventListener('click', () => {
 const sort_default = document.querySelector('.default')
 async function getProducts(page, limit){
     let data;
-  
-    if(searchValue){
-        const response = await searchProducts(searchValue)
-        const all_products = await getPagePagination('1', '6')
-        all_products.products = response
-        data = all_products
-    }else if(page == '' && limit == ''){
+    if(page == '' && limit == ''){
         data = await getPagePagination('1', '6')
     }else{
         data = await getPagePagination(page, limit)
@@ -131,6 +125,7 @@ async function pages(){
 pages()
 getProducts('1', '6')
 const showProduct = (data) => {
+    productList.innerHTML = ''
     const pageResult = document.querySelector('.page-show')
     pageResult.innerHTML = `Hiển thị ${data.startIndex + 1} - ${data.endIndex} của ${data.productLength} kết quả`
     data.products.forEach((item) => {
@@ -210,6 +205,12 @@ const showProduct = (data) => {
     })
 }
 
+if(searchValue){
+    const response = await searchProducts(searchValue)
+    const all_products = await getPagePagination('1', '6')
+    all_products.products = response
+    showProduct(all_products)
+}
 
 const showCategories = async () => {
     const data = await getPagePagination('1', '6')
@@ -239,11 +240,12 @@ const showCategories = async () => {
         categoryLink.id = cat.id
         categoryLink.addEventListener('click', async (e) => {
             productList.style.opacity = 0
-
+            const id = cat.id
             setTimeout(async() => {
-                const response = await getProductsByCategoryId(e.target.id)
+                const response = await getProductsByCategoryId(id)
                 const all_products = await getPagePagination('1', '6')
-                all_products.products = response.slice(all_products.startIndex, all_products.endIndex)
+                const categories_pagination = response.slice(all_products.startIndex, all_products.endIndex)
+                all_products.products = categories_pagination
                 let data = all_products
                 productList.innerHTML = ''
                 showProduct(data)

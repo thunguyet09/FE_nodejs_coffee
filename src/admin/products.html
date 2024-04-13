@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe Cafe - Admin</title>
+    <link rel="stylesheet" href="/public/admin/css/header.css">
+    <link rel="stylesheet" href="/public/admin/css/products.css">
+    <link rel="stylesheet" href="/public/admin/css/footer.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Le&family=Roboto+Condensed&family=Rubik&family=Mulish:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Bebas+Neue&family=Caudex&family=Marcellus&family=Jost:wght@400;500&family=League+Spartan:wght@400;500&family=Catamaran:wght@300;400;500&family=Poppins:wght@400;500&family=Roboto:wght@400;500&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://kit.fontawesome.com/f88525de2e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+        <div id="products">
+            <div class="product_title">
+                <h2>Products</h2>
+                <button class="addBtn">
+                    <span class="material-symbols-outlined">
+                        box_add
+                    </span>
+                    <p>Add product</p>
+                </button>
+            </div>
+            <div class="product_funcs">
+                <div class="filter">
+                    <div>
+                        <h3>Filters</h3>
+                        <span class="material-symbols-outlined">
+                            expand_more
+                        </span>
+                    </div>
+                    <div class="filter_content">
+                        <h4>Category</h4>
+                        <div class="category_list"></div>
+                    </div>
+                </div>
+
+                <div class="search">
+                    <input type="text" id="search_product" placeholder="Search">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                </div>
+
+                <div>
+                    <select id="featured">
+                        <option value="0">Mặc định</option>
+                        <option value="1">Thứ tự theo giá: từ thấp đến cao</option>
+                        <option value="2">Thứ tự theo giá: từ cao xuống thấp</option>
+                    </select>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>Tên hàng</th>
+                        <th>Giá bán</th>
+                        <th>Giá vốn</th>
+                        <th>Tình trạng</th>
+                        <th>Tồn kho</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <div class="rows-per-page">
+                    <p>Rows per page: </p>
+                    <ul>
+                        <h4>8</h4>
+                        <span class="material-symbols-outlined">
+                            arrow_drop_down
+                        </span>
+                        <div class="rows-per-page-list">
+                            <li><a href="?rows=6">6</a></li>
+                            <li><a href="?rows=8">8</a></li>
+                            <li><a href="?rows=10">10</a></li>
+                            <li><a href="?rows=12">12</a></li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="index-page"></div>
+                <div class="navigation-page"></div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modalBox">
+                    <div class="modal-heading">
+                        <h3>Thêm Sản Phẩm</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="add-modal">
+                        <div class="row1">
+                            <div class="group-control">
+                                <label>Tên hàng</label>
+                                <input type="text" id="prodname" name="name" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Loại hàng</label>
+                                <select id="catalog" name="catalog">
+                                
+                                </select>
+                            </div>
+                            <div class="group-control">
+                                <label>Giá bán</label>
+                                <input type="number" id="price" min="0" name="price" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Giá gốc</label>
+                                <input type="number" id="promo_price" min="0" name="promo_price" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Giá vốn</label>
+                                <input type="number" id="gia_von" min="0" name="gia_von" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Tình trạng</label>
+                                <input type="text" id="stock" value="In stock" name="stock" required>
+                            </div>
+                            <div class="errMsg"></div>
+                        </div>
+                        <div class="row2">
+                            <div class="group-control">
+                                <label>Tồn kho</label>
+                                <input type="number" id="quantity" name="quantity" required>
+                            </div>
+                            <div class="group-control textarea">
+                                <label>Mô tả</label><br>
+                                <textarea id="mo_ta" cols="38" rows="5" name="mo_ta"></textarea>
+                            </div>
+                            <div class="group-control">
+                                <label>Hình ảnh:</label>
+                            </div>
+                            <div class="file">
+                                <div>
+                                    <input type="file" id="imgFile" accept="image/*" aria-label="File browser example"
+                                        name="img">
+                                    <img id="imgProd" src="/public/img/img.jpg">
+                                </div>
+                            </div>
+                            <div class="add-btns">
+                                <button type="button" class="saveBtn">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <p>Lưu & Thêm mới</p>
+                                </button>
+                                <button class="cancelBtn">
+                                    <i class="fa-solid fa-ban"></i>
+                                    <p>Bỏ qua</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="updateModal" class="update-modal">
+            <div class="update-modal-content">
+                <div class="update-modalBox">
+                    <div class="modal-heading">
+                        <h3>CẬP NHẬT SẢN PHẨM</h3>
+                        <span class="update_modal_close">&times;</span>
+                    </div>
+                    <form class="update-modal-form">
+                        <div class="row1">
+                            <div class="group-control">
+                                <label>Tên hàng</label>
+                                <input type="text" id="update_prodname" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Loại hàng</label>
+                                <select id="update_catalog"></select>
+                            </div>
+                            <div class="group-control">
+                                <label>Giá bán</label>
+                                <input type="number" id="update_price" min="0" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Giá gốc</label>
+                                <input type="number" id="update_promo_price" min="0" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Giá vốn</label>
+                                <input type="number" id="update_gia_von" min="0" required>
+                            </div>
+                            <div class="group-control">
+                                <label>Tình trạng</label>
+                                <input type="text" id="update_stock" required>
+                            </div>
+                            <div class="errMsg"></div>
+                        </div>
+                        <div class="row2">
+                            <div class="group-control">
+                                <label>Tồn kho</label>
+                                <input type="number" min="0" id="update_quantity" required>
+                            </div>
+                            <div class="group-control textarea">
+                                <label>Mô tả</label><br>
+                                <textarea id="update_mo_ta" cols="38" rows="5"></textarea>
+                            </div>
+                            <div class="group-control">
+                                <label>Hình ảnh:</label>
+                            </div>
+                            <div class="file">
+                               <div>
+                                    <input type="file" id="update_imgFile" accept="image/*" aria-label="File browser example">
+                                    <img id="update_imgProd">
+                               </div>
+                            </div>
+                            <input id="prodId" type="hidden">
+                            <input id="likes" type="hidden">
+                            <input id="luot_ban" type="hidden">
+                            <input id="luot_xem" type="hidden">
+                            <div class="updateBtns">
+                                <button type="button" class="saveBtn">
+                                    <span class="material-symbols-outlined">
+                                        save
+                                    </span>
+                                    <p>Lưu & Cập nhật</p>
+                                </button>
+                                <button type="button" class="update_cancelBtn">
+                                    <span class="material-symbols-outlined">
+                                        close
+                                    </span>
+                                    <p>Bỏ qua</p>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="dialog-content">
+            <span></span>
+            <p class="dialog-text"></p>
+        </div>
+
+
+        <div id="delete-confirmation">
+            <h3 class="delete_prodname"></h3>
+            <div class="delConfirmBtns">
+                <input type="hidden" id="prod_id">
+                <button class="deleteConfirmBtn">Xóa</button>
+                <button class="cancelConfirmBtn">Hủy</button>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="footer-content">
+                <p>Copyright 2024 &#169; Thu Nguyet</p>
+            </div>
+        </div>
+
+        <script type="module" src="/public/admin/js/header.js"></script>
+        <script type="module" src="/public/admin/js/products.js"></script>
+</body>
+
+</html>

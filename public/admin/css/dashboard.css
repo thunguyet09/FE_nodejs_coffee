@@ -1,0 +1,346 @@
+#dashboard {
+    padding: 10px 30px 20px 100px;
+}
+
+body {
+    background-color: #fff5f5;
+}
+
+#dashboard>h1 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    background-color: #fff;
+    padding: 15px 20px;
+}
+
+.greeting-user {
+    font-family: 'Mulish', sans-serif;
+}
+
+.card {
+    background: linear-gradient(103.75deg, #33b1ee -13.9%, #7366ff 79.68%);
+    width: 500px;
+    padding: 20px;
+    position: relative;
+    border-radius: 20px;
+}
+
+.cartoon {
+    position: absolute;
+    bottom: -20px;
+    right: 40px;
+    animation: updown 1s infinite alternate;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+.media-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.greeting-user > h4 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.greeting-user > p {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 25px;
+    height: 90px;
+    width: 270px;
+}
+
+.whatsnew-btn > button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid white;
+    color: white;
+    font-family: 'Mulish', sans-serif;
+    padding: 8px 40px;
+    font-size: 14px;
+    font-weight: 650;
+    border-radius: 5px;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.whatsnew-btn > button:hover {
+    background-color: white;
+    color: black;
+}
+
+.svg-fill {
+    height: 22px;
+    width: 22px;
+}
+
+.statistic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.widget-1 > .widget-row > .widget-icon {
+    border: 2px solid salmon;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.col1 > div, .col2 > div {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.widget-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 250px;
+}
+
+.widget-1, .widget-2, .widget-3, .widget-4 {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.widget-content > h2, .widget-content > p {
+    margin: 0;
+    font-family: 'Rubik',sans-serif;
+}
+
+.widget-content > h2 {
+    font-size: 21px;
+    color: #212529;
+}
+
+.widget-content > p {
+    color: rgba(82,82,108,.8);
+}
+
+.widget-content {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.percent > span {
+    font-family: 'Rubik',sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.widget-1 > .percent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+    gap: 5px;
+    color:salmon;
+}
+
+.col1, .col2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.widget-2 > .widget-row > .widget-icon {
+    border: 2px solid #ffaa05;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.widget-2 > .percent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+    gap: 5px;
+    color: #ffaa05;
+}
+
+.widget-3 > .widget-row > .widget-icon {
+    border: 2px solid #00cfe8;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.widget-3 > .widget-row > .widget-icon > i {
+    color:#00cfe8;
+    font-size: 18px;
+}
+
+.widget-3 > .percent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+    gap: 5px;
+    color: #00cfe8;
+}
+
+.widget {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.widget-4 > .widget-row > .widget-icon {
+    border: 2px solid rgb(234, 84, 85);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.widget-4 > .widget-row > .widget-icon > i {
+    color:rgb(234, 84, 85);
+    font-size: 18px;
+}
+
+.widget-4 > .percent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+    gap: 5px;
+    color: rgb(234, 84, 85);
+}
+
+.highest_sales_of_products > .row1 > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Mulish', sans-serif;
+}
+
+.highest_sales_of_products > .row1 > div > h2 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color:#212529;
+}
+
+.highest_sales_of_products {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.highest_sales_of_products > .row1 {
+    background-color: white;
+    width: 55%;
+    padding: 10px;
+}
+
+.highest_sales_of_products > .row2 {
+    background-color: white;
+    width: 45%;
+    padding: 10px;
+}
+
+.order-this-month > h3 {
+    font-family: 'Mulish', sans-serif;
+    margin: 0;
+    padding: 10px 15px;
+}
+.highest_sales_of_products > .row1 > canvas {
+    margin-top: 20px;
+}
+
+.order-revenue {
+    font-family: 'Rubik', sans-serif;
+    font-size: 22px;
+    background-color: rgb(242, 246, 255);
+    font-weight: 600;
+    margin: 0px 12px;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+.times {
+    padding-left: 40px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.times > ul > li {
+    list-style-type: none;
+    margin: 5px 0px 8px 0px;
+}
+
+.checked {
+    list-style-type: none;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    background-color: rgb(235, 235, 235);
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color:#212529;
+    cursor: pointer;
+}
+
+.times > ul {
+    padding: 0;
+    background-color: rgb(235, 235, 235);
+    padding: 10px 23px 10px 15px;
+    border-radius: 5px;
+    margin-top: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s linear;
+    position: absolute;
+    top: 100%;
+    left: 40px;
+    z-index: 99;
+}
+
+.times > ul > li > a {
+    text-decoration: none;
+    color:#212529;
+    transition: .3s ease;
+}
+
+.times > ul > li:hover > a{
+    color:#7366ff;
+}
+
+
+#order-chart {
+    margin-top: 10px;
+}

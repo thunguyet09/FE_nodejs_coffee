@@ -127,3 +127,27 @@ export const getComments = async () => {
     const data = await response.json()
     return data
 }
+
+export const getCommentReplies = async () => {
+    const response = await fetch(`http://localhost:3000/api/commentreplies`)
+    const data = await response.json()
+    return data
+}
+
+export const getOrderDetailById = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/orderdetail/detail/${id}`)
+    const data = await response.json()
+    return data
+}
+
+export const getTheme = async () => {
+    const response = await fetch(`http://localhost:3000/api/theme`)
+    const data = await response.json()
+    return data
+}
+
+export const getCategoryById = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/categories/${id}`)
+    const data = await response.json()
+    return data
+}

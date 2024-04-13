@@ -1,0 +1,15 @@
+
+#footer {
+    width: 100%;
+    background-color: white;
+    padding: 5px 0px;
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content > p {
+    font-size: 14px;
+}
+

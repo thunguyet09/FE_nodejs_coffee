@@ -9,18 +9,9 @@ const skipBtn = document.querySelector('.order-detail-btns > .skip')
 const tbody = document.querySelector('table > tbody')
 
 
-function goToProductDetail(id){
+function goToProductDetail(id) {
     window.location.href = `./detail.html?id=${id}`
 }
-
-const order = await getOrdersById(orderId)
-order.forEach((item) => {
-    if(item.status == 3){
-        const thead = document.querySelector('thead > tr')
-        const write_reviews_th = document.createElement('th')
-        thead.appendChild(write_reviews_th)
-    }
-})
 
 const ma_don = document.querySelector('.order-id')
 const order_status = document.querySelector('.order-status')
@@ -47,34 +38,33 @@ const discount = document.querySelector('.discount')
 const order_detail = await getOrderDetailByOrderId(orderId)
 const orders = await getOrders()
 const myOrders = orders.filter((item) => item.user_id == userId && item.order_id == orderId)
-
+const table = document.querySelector('table')
 const showProduct = async () => {
-    tbody.innerHTML = ''
     myOrders.forEach((res) => {
-        if(res.admin){
+        if (res.admin) {
             ma_don.innerHTML = `
                 <h3>Đơn hàng: <b>#${res.order_id}</b></h3>
                 <p>${res.date} | <span>NV tư vấn: ${res.admin}</span></p>
             `
-        }else {
+        } else {
             ma_don.innerHTML = `
                 <h3>Đơn hàng: <b>#${res.order_id}</b></h3>
                 <p>${res.date} | <span>NV tư vấn:</span></p>
             `
         }
-        if(res.status === 0){
+        if (res.status === 0) {
             order_status.style.backgroundColor = 'rgb(34,34,221,0.15)'
             order_status.style.color = '#4959A5'
             order_status.innerHTML = `<h3>Đang chờ xác nhận</h3>`
-        }else if(res.status === 1){
+        } else if (res.status === 1) {
             order_status.style.backgroundColor = '#FFEADD'
             order_status.style.color = '#C70039'
             order_status.innerHTML = `<h3>Đã xác nhận</h3>`
-        }else if(res.status === 2){
+        } else if (res.status === 2) {
             order_status.style.backgroundColor = '#DDF2FD'
             order_status.style.color = '#427D9D'
             order_status.innerHTML = `<h3>Đang giao hàng</h3>`
-        }else if(res.status === 3){
+        } else if (res.status === 3) {
             order_status.style.backgroundColor = '#FAFDD6'
             order_status.style.color = '#7A9D54'
             order_status.innerHTML = `<h3>Đã giao</h3>`
@@ -82,7 +72,7 @@ const showProduct = async () => {
             cancelBtn.addEventListener('click', () => {
                 window.location.href = '/html/product.html'
             })
-        }else {
+        } else {
             order_status.style.backgroundColor = '#D8D9DA'
             order_status.style.color = '#827E61'
             order_status.innerHTML = `<h3>Đã hủy</h3>`
@@ -100,20 +90,20 @@ const showProduct = async () => {
             <p>${parseInt(res.total, 10).toLocaleString()}&#8363;</p>
         `
 
-        if(res.discount > 0){
+        if (res.discount > 0) {
             let total_after = res.total - res.discount
             total.innerHTML = `
                 <p>${parseInt(total_after, 10).toLocaleString()}&#8363;</p>
             `
             needToPay.innerHTML = `${parseInt(total_after, 10).toLocaleString()}&#8363;`
-        }else{
+        } else {
             total.innerHTML = `
                 <p>${parseInt(res.total, 10).toLocaleString()}&#8363;</p>
             `
             needToPay.innerHTML = `${parseInt(res.total, 10).toLocaleString()}&#8363;`
         }
 
-        if(res.discount > 0){
+        if (res.discount > 0) {
             discount.innerHTML = `
                 <h4>Khuyến mãi</h4>
                 <p>- ${parseInt(res.discount, 10).toLocaleString()}&#8363;</p>
@@ -126,156 +116,153 @@ const showProduct = async () => {
             <h3>Cần thanh toán</h3>
             <p>(Số lượng: ${res.quantity})</p>
         `
-
-        order_detail.forEach(async (item) => {
-            const product = await getDetailProduct(item.prod_id)
-            const tr = document.createElement('tr')
-            tbody.appendChild(tr)
-            const image = document.createElement('td')
-            image.style.cursor = 'pointer'
-            image.addEventListener('click', () => goToProductDetail(item.prod_id))
-            tr.appendChild(image)
-            const imageElement = document.createElement('img')
-                imageElement.src = `/public/img/${product.img_url}`
-                imageElement.width = '70'
-                imageElement.height = '70'
-                image.appendChild(imageElement)
-            const productName = document.createElement('td')
-            productName.className = 'prodName'
-            productName.textContent = item.product_name 
-            tr.appendChild(productName)
-            productName.addEventListener('click', () => goToProductDetail(prod.id))
-            const quantity = document.createElement('td')
-            quantity.textContent = item.product_quantity
-            tr.appendChild(quantity)
-            const price = document.createElement('td')
-            price.innerHTML = `${parseInt(item.product_price, 10).toLocaleString()}&#8363;`
-            tr.appendChild(price)
-            const subtotal = document.createElement('td')
-            subtotal.innerHTML = `${parseInt(item.subtotal, 10).toLocaleString()}&#8363;`
-            tr.appendChild(subtotal)
-            const reviewElement = document.createElement('td')
-            reviewElement.style.width = '170px'
-            tr.appendChild(reviewElement)
-            const comments = await getComments()
-            const filterComment = comments.filter((val) => val.prod_id == item.prod_id && res.user_id == userId && item.order_id == orderId && val.order_detail_id == item.order_detail_id)
-            if(res.status === 3){
-                console.log(item.prod_id)
-                const reviewBtn = document.createElement('button')
-                reviewBtn.className = 'reviewBtn'
-                reviewBtn.addEventListener('click', () => openModal(reviewElement, reviewBtn, item.prod_id, item.product_quantity, item.order_detail_id))
-                if(filterComment.length === 0){
-                    reviewBtn.innerHTML = `
-                        <span class="material-symbols-outlined">edit_note</span>
-                        <p>Viết đánh giá</p>
-                    `
-                }else{
-                    reviewBtn.style.display = 'none'
-                    reviewElement.style.width = '0px'
-                }
-                reviewElement.appendChild(reviewBtn)
-            }
-        })
     })
 }
 
+const comments = await getComments()
 const reviewModal = document.getElementById('myModal')
 const modalProduct = document.querySelector('.modal-product')
 const stars = document.querySelectorAll('.star')
 const modalText = document.querySelector('.modal-text')
-const reviewBtn = document.querySelector('.send-review > button')
-
-async function openModal(reviewElement,writeBtn,productId,prodQuantity, orderDetailId){
-    const order = await getOrderDetail()
-    const myOrders = order.filter((item) => item.order_id == orderId && item.prod_id == productId && item.order_detail_id == orderDetailId)
-    
-    modalProduct.innerHTML = ''
-    reviewModal.style.display = 'block'
-    const product = await getDetailProduct(productId)
-    const img = document.createElement('img')
-    img.src = `/public/img/${product.img_url}`
-    img.width = 100
-    img.height = 120
-    modalProduct.appendChild(img)
-    myOrders.forEach((item) => {
-        const productElement = document.createElement('div')
-        productElement.className = 'productElement'
-        modalProduct.appendChild(productElement)
-        const productName = document.createElement('div')
-        productElement.appendChild(productName)
-        const prodName = document.createElement('h3')
-        prodName.textContent = product.name
-        productName.appendChild(prodName)
-        const quantity = document.createElement('p')
-        quantity.textContent = "x" + prodQuantity
-        productName.appendChild(quantity)
-        const price = document.createElement('h4')
-        price.innerHTML = `${parseInt(item.product_price, 10).toLocaleString()}&#8363; / ${item.size}`
-        productElement.appendChild(price)
-
-        reviewBtn.addEventListener('click', async () => {
-            tbody.innerHTML = ''
-            const contentValue = modalText.childNodes[3].value;
-            const currentDate = new Date()
-            const year = currentDate.getFullYear()
-            const month = currentDate.getMonth() + 1
-            const day = currentDate.getDate()
-            const commentDate = day + "/" + month + "/" + year
-            const comments = await getComments()
-            const commentId = comments[comments.length - 1].id + 1
-            const comment = {
-                order_id: orderId,
-                order_detail_id: item.order_detail_id,
-                date: commentDate,
-                content: contentValue === '' ? '' : contentValue,
-                id: commentId,
-                prod_id: productId,
-                stars: value,
-                user_id: userId
-            }
-            await fetch(`http://localhost:3000/api/comments`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(comment)
-            })
-            reviewElement.style.width = '0px';
-            writeBtn.style.display = 'none';
-            reviewModal.style.display = 'none';
-            dialog_content.style.backgroundColor = '#FFCC70';
-            dialog_content.style.color = 'black';
-            dialog_icon.innerHTML = '<i class="fa-solid fa-check"></i>';
-            dialogText.textContent = 'Bình luận của bạn đã được gửi';
-            dialog_content.style.display = 'flex';
-            setTimeout(() => {
-                showProduct();
-                dialog_content.style.display = 'none';
-            }, 2000);
-        })
-    })
-    modalText.innerHTML = `
-        <h3>Viết đánh giá</h3>
-        <textarea cols="61" rows="5" placeholder="Viết đánh giá của bạn..."></textarea>
-    `
-    let value = 0
-    stars.forEach((star) => {
-        star.addEventListener('click', (e) => {
-            value = parseInt(e.target.getAttribute('data-value'))
-            stars.forEach((item) => {
-                if(parseInt(item.childNodes[0].getAttribute('data-value')) <= value){
-                    item.classList.add('active')
-                }else{
-                    item.classList.remove('active')
-                }
-            })
-        })
-    })
-}
+const sendReview = document.querySelector('.send-review > button')
 
 const dialog_content = document.getElementById('dialog-content')
 const dialog_icon = document.querySelector('#dialog-content > span')
 const dialogText = document.querySelector('.dialog-text')
+const review = async () => {
+    order_detail.forEach(async (item) => {
+        const product = await getDetailProduct(item.prod_id)
+        const tr = document.createElement('tr')
+        tbody.appendChild(tr)
+        const image = document.createElement('td')
+        image.style.cursor = 'pointer'
+        image.addEventListener('click', () => goToProductDetail(item.prod_id))
+        tr.appendChild(image)
+        const imageElement = document.createElement('img')
+        imageElement.src = `/public/img/${product.img_url}`
+        imageElement.width = '70'
+        imageElement.height = '70'
+        image.appendChild(imageElement)
+        const productName = document.createElement('td')
+        productName.className = 'prodName'
+        productName.textContent = item.product_name
+        tr.appendChild(productName)
+        productName.addEventListener('click', () => goToProductDetail(prod.id))
+        const quantity = document.createElement('td')
+        quantity.textContent = item.product_quantity
+        tr.appendChild(quantity)
+        const price = document.createElement('td')
+        price.innerHTML = `${parseInt(item.product_price, 10).toLocaleString()}&#8363;`
+        tr.appendChild(price)
+        const subtotal = document.createElement('td')
+        subtotal.innerHTML = `${parseInt(item.subtotal, 10).toLocaleString()}&#8363;`
+        tr.appendChild(subtotal)
+        myOrders.forEach(async (res) => {
+            if (res.status === 3) {
+                const filterComment = comments.filter((val) => val.prod_id == item.prod_id && val.user_id == userId && val.order_id == orderId && val.order_detail_id == item.order_detail_id)
+                if (filterComment.length === 0) {
+                    const reviewElement = document.createElement('td')
+                    tr.appendChild(reviewElement)
+                    const reviewBtn = document.createElement('button')
+                    reviewBtn.className = 'reviewBtn'
+                    reviewElement.appendChild(reviewBtn)
+                    reviewElement.style.width = '170px'
+                    const thead = document.querySelector('thead > tr')
+                    const write_reviews_th = document.createElement('th')
+                    thead.appendChild(write_reviews_th)
+                    reviewBtn.innerHTML = `
+                            <span class="material-symbols-outlined">edit_note</span>
+                            <p>Viết đánh giá</p>
+                        `
+                    reviewBtn.addEventListener('click', async () => {
+                        modalProduct.innerHTML = ''
+                        reviewModal.style.display = 'block'
+                        const product = await getDetailProduct(item.prod_id)
+                        const img = document.createElement('img')
+                        img.src = `/public/img/${product.img_url}`
+                        img.width = 100
+                        img.height = 120
+                        modalProduct.appendChild(img)
+                        const productElement = document.createElement('div')
+                            productElement.className = 'productElement'
+                            modalProduct.appendChild(productElement)
+                            const productName = document.createElement('div')
+                            productElement.appendChild(productName)
+                            const prodName = document.createElement('h3')
+                            prodName.textContent = product.name
+                            productName.appendChild(prodName)
+                            const quantity = document.createElement('p')
+                            quantity.textContent = "x" + item.product_quantity
+                            productName.appendChild(quantity)
+                            const price = document.createElement('h4')
+                            price.innerHTML = `${parseInt(item.product_price, 10).toLocaleString()}&#8363; / ${item.size}`
+                            productElement.appendChild(price)
+
+                            sendReview.addEventListener('click', async () => {
+                                tbody.innerHTML = ''
+                                const contentValue = modalText.childNodes[3].value;
+                                const currentDate = new Date()
+                                const year = currentDate.getFullYear()
+                                const month = currentDate.getMonth() + 1
+                                const day = currentDate.getDate()
+                                const commentDate = day + "/" + month + "/" + year
+                                const comments = await getComments()
+                                const commentId = comments[comments.length - 1].id + 1
+                                const comment = {
+                                    order_id: orderId,
+                                    order_detail_id: item.order_detail_id,
+                                    date: commentDate,
+                                    content: contentValue === '' ? '' : contentValue,
+                                    id: commentId,
+                                    prod_id: item.prod_id,
+                                    stars: value,
+                                    user_id: userId
+                                }
+                                await fetch(`http://localhost:3000/api/comments`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(comment)
+                                })
+                                .then(() => {
+                                    reviewElement.style.width = '0px';
+                                    reviewModal.style.display = 'none';
+                                    dialog_content.style.backgroundColor = '#FFCC70';
+                                    dialog_content.style.color = 'black';
+                                    dialog_icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                    dialogText.textContent = 'Bình luận của bạn đã được gửi';
+                                    dialog_content.style.display = 'flex';
+                                    setTimeout(() => {
+                                        window.location.href = `/src/order_detail.html?id=${orderId}`;
+                                        dialog_content.style.display = 'none';
+                                    }, 2000);
+                                })
+                            })
+
+                        modalText.innerHTML = `
+                            <h3>Viết đánh giá</h3>
+                            <textarea cols="61" rows="5" placeholder="Viết đánh giá của bạn..."></textarea>
+                        `
+                        let value = 0
+                        stars.forEach((star) => {
+                            star.addEventListener('click', (e) => {
+                                value = parseInt(e.target.getAttribute('data-value'))
+                                stars.forEach((item) => {
+                                    if (parseInt(item.childNodes[0].getAttribute('data-value')) <= value) {
+                                        item.classList.add('active')
+                                    } else {
+                                        item.classList.remove('active')
+                                    }
+                                })
+                            })
+                        })
+                    })
+                }
+            }
+        })
+    })
+}
 
 skipBtn.addEventListener('click', () => {
     document.location.href = '/src/orders.html'
@@ -284,23 +271,23 @@ skipBtn.addEventListener('click', () => {
 cancelBtn.addEventListener('click', async () => {
     const order = await fetch(`https://coffeejs-ac308-default-rtdb.firebaseio.com/orders/${orderId}.json`)
     const orderData = await order.json()
-    if(orderData.status === 0){
+    if (orderData.status === 0) {
         await fetch(`https://coffeejs-ac308-default-rtdb.firebaseio.com/orders/${orderId}.json`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({order_id: orderId, status: 4})
+            body: JSON.stringify({ order_id: orderId, status: 4 })
         })
-        .then(async () => {
-            const orderDetail = await fetch(`https://coffeejs-ac308-default-rtdb.firebaseio.com/order_detail.json`)
-            const orderDetailResponse = await orderDetail.json()
-            const filteredOrderDetail = orderDetailResponse.filter((item) => item.order_id === orderId)
-            return filteredOrderDetail
-        })
-        .then((orderDetailData) => {
-            orderDetailData.forEach(async (item) => {
-                const product = await fetch(`https://coffeejs-ac308-default-rtdb.firebaseio.com/products.json`)
+            .then(async () => {
+                const orderDetail = await fetch(`https://coffeejs-ac308-default-rtdb.firebaseio.com/order_detail.json`)
+                const orderDetailResponse = await orderDetail.json()
+                const filteredOrderDetail = orderDetailResponse.filter((item) => item.order_id === orderId)
+                return filteredOrderDetail
+            })
+            .then((orderDetailData) => {
+                orderDetailData.forEach(async (item) => {
+                    const product = await fetch(`https://coffeejs-ac308-default-rtdb.firebaseio.com/products.json`)
                     const productData = await product.json()
                     const productItems = productData.filter((prod) => prod.id === item.prod_id)
                     let quantityUpdate = item.product_quantity
@@ -310,26 +297,26 @@ cancelBtn.addEventListener('click', async () => {
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({ id: prod.id, quantity: parseInt(prod.quantity + quantityUpdate), luot_ban: parseInt(prod.luot_ban - quantityUpdate)})
+                            body: JSON.stringify({ id: prod.id, quantity: parseInt(prod.quantity + quantityUpdate), luot_ban: parseInt(prod.luot_ban - quantityUpdate) })
                         })
                     })
+                })
             })
-        })
-        .then(() => {
-            dialog_content.style.backgroundColor = '#C7A17A'
-            dialog_icon.innerHTML = `<i class="fa-solid fa-check"></i>`
-            dialogText.textContent = 'Đơn hàng đã bị hủy';
-            dialog_content.style.display = 'flex'
-            setTimeout(() => {
-                dialog_content.style.display = 'none'
-            }, 2000)
-        })
-        .then(() => {
-            setTimeout(() => {
-                document.location.href = '/html/order.html'
-            }, 5000)
-        })
-    }else {
+            .then(() => {
+                dialog_content.style.backgroundColor = '#C7A17A'
+                dialog_icon.innerHTML = `<i class="fa-solid fa-check"></i>`
+                dialogText.textContent = 'Đơn hàng đã bị hủy';
+                dialog_content.style.display = 'flex'
+                setTimeout(() => {
+                    dialog_content.style.display = 'none'
+                }, 2000)
+            })
+            .then(() => {
+                setTimeout(() => {
+                    document.location.href = '/html/order.html'
+                }, 5000)
+            })
+    } else {
         cancelBtn.disabled = true
         dialog_content.style.backgroundColor = '#dc3545'
         dialog_icon.innerHTML = `<i class="fa-solid fa-circle-xmark"></i>`
@@ -344,7 +331,15 @@ cancelBtn.addEventListener('click', async () => {
 
 const closeBtn = document.querySelector('.close')
 closeBtn.addEventListener('click', () => {
+    tbody.innerHTML = ''
+    table.style.opacity = 0
+    review()
+    setTimeout(() => {
+        table.style.opacity = 1
+        table.style.transition = '.3s ease'
+    }, 500)
     reviewModal.style.display = 'none'
 })
 showUserInfo()
 showProduct()
+review()

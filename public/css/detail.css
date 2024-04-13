@@ -596,7 +596,7 @@ input[type="checkbox"]:checked + label::after {
 }
 
 .reviewBox {
-    margin: 0px 150px;
+    margin: 50px 30px;
     font-family: 'Mulish', sans-serif;
     margin-bottom: 70px;
 }
@@ -604,7 +604,7 @@ input[type="checkbox"]:checked + label::after {
 .commentBox {
     display: flex;
     flex-direction: row;
-    width: 800px;
+    width: 100%;
     gap: 20px;
     margin-bottom: 35px;
 }
@@ -612,28 +612,29 @@ input[type="checkbox"]:checked + label::after {
 .commentBox > img {
     margin-top: 10px;
     border-radius: 50%;
-    width: 7.5%;
+    width: 50px;
+    height: 50px;
 }
 
 .commentBox > div {
-    width: 90%;
+    width: 100%;
 }
 .commentName {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 0px 0px 0px;
+    margin: 14px 0px 0px 0px;
 }
 
-.commentName > p {
+.comment-date {
     color: grey;
-    font-size: 14px;
-    margin: 0;
+    font-size: 13px;
+    margin: 5px 0px;
 }
 
 .commentName > h4 {
-    font-size: 17px;
+    font-size: 16px;
     margin: 0;
 }
 
@@ -648,7 +649,7 @@ input[type="checkbox"]:checked + label::after {
 
 .commentContent {
     margin: 0;
-    margin-top: 10px;
+    margin-top: 13px;
 }
 
 .dividedReview {
@@ -706,7 +707,7 @@ input[type="checkbox"]:checked + label::after {
     display: none;
 }
 .reply-input {
-    width: 300px;
+    width: 500px;
     height: 40px;
     font-family: 'Mulish', sans-serif;
     font-size: 14px;
@@ -818,3 +819,131 @@ input[type="checkbox"]:checked + label::after {
     font-size: 24px;
 }
 
+.related-title > h3{
+    font-family: 'Mulish', sans-serif;
+    font-size: 17px;
+    color: rgb(55, 55, 55);
+    margin-bottom: 30px;
+}
+
+.related-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.related-navigate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.related-navigate > button {
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(241, 241, 241);
+    padding:5px;
+}
+
+.related-navigate > button > span {
+    transition: .3s ease;
+}
+
+.related-navigate > button:hover > span{
+    color: #b8784e;
+    cursor: pointer;
+}   
+
+.carousel-detail {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 10px;
+    transition: transform 0.8s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+}
+
+.carouselContent {
+    width: 250px;
+}
+
+.carouselContent > h4 {
+    font-family: 'Mulish', sans-serif;
+    height: 30px;
+    margin: 0;
+    margin-top: 5px;
+    font-size: 17px;
+}
+
+.carouselPrice > h4 {
+    font-family: "Rubik", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color:#8E0928;
+}
+
+.carouselPrice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.carousel-container > div {
+    background-color: rgba(247, 247, 247, 0.802);
+    padding: 10px 15px 20px 15px;
+}
+
+.carouselPrice > span {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.percent {
+    font-family: "Roboto", sans-serif;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background-color: #8E0928;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.productItem {
+    position: relative;
+    cursor: pointer;
+}
+
+.related-products {
+    margin-bottom: 80px;
+}
+
+.noCommentBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.noCommentBox > h3 {
+    font-weight: 500;
+}

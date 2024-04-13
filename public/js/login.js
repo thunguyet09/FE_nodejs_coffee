@@ -52,6 +52,8 @@ loginBtn.addEventListener('click', (e) => {
                     dialogIcon.innerHTML = '';
                     if(data.role == 'Thành viên'){
                         document.location.href = '/src/home.html'
+                    }else{
+                        document.location.href = '/src/admin/dashboard.html'
                     }
                 }, 2000);
             } else if (res.status === 404) {

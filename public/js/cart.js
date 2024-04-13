@@ -154,8 +154,9 @@ const cartTable = (data) => {
                     inputQuantity.value = 1;
                     showCheckout()
                 }else {
+                    console.log(item.prod_id)
                     let new_quantity = parseInt(inputQuantity.value)
-                    await fetch(`http://localhost:3000/api/cart/${product.id}/${userId}/${item.size}`, {
+                    await fetch(`http://localhost:3000/api/cart/${item.prod_id}/${userId}/${item.size}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -256,7 +257,7 @@ const showCheckout = async () => {
                 }, 4000);
                 updateCheckout(discount, subTotal, so_luong, total)
             }else{
-                total = localStorage.getItem('subtotal')
+                console.log(total)
                 let discount = 0
                 voucher_text.textContent = ''
                 voucher_num.innerHTML = ''
